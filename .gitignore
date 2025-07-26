@@ -46,3 +46,11 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+# Firebase configuration files (contain sensitive keys)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+firebase.json
+
+# Firebase local config
+.firebaserc
