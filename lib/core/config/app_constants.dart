@@ -1,5 +1,6 @@
 /// App constants that don't change across environments
 class AppConstants {
+  // FIXME: This is example code and should be replaced with actual constants relevant to your application.
   // Prevent instantiation
   AppConstants._();
 
