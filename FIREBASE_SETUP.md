@@ -1,5 +1,7 @@
 # Firebase Setup Guide
 
+[Reference](https://firebase.google.com/docs/flutter/setup?platform=ios)
+
 ## Important Security Notice
 
 Firebase configuration files containing API keys are excluded from version control for security reasons.
