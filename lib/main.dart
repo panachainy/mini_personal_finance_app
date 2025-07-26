@@ -1,21 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'injection/injection.dart';
+import 'core/config/config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize dependency injection
+  configureDependencies();
+
+  // Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+
+  // Get app configuration
+  final appConfig = getIt<AppConfig>();
+
+  runApp(MyApp(config: appConfig));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppConfig config;
+
+  const MyApp({super.key, required this.config});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print('App Name: ${config.appName}');
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: config.appName,
+      debugShowCheckedModeBanner: config.isDebug,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -34,7 +50,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: config.appName),
     );
   }
 }
