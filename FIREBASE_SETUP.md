@@ -17,43 +17,8 @@ The following files need to be obtained from your Firebase project console:
 
 ## Setup Instructions
 
-### 1. Firebase Console Setup
-
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select your project: `mini-personal-finance-app`
-3. Download the required configuration files
-
-### 2. Android Setup
-
-1. Download `google-services.json` from Firebase Console
-2. Place it in `android/app/google-services.json`
-
-### 3. iOS Setup
-
-1. Download `GoogleService-Info.plist` from Firebase Console
-2. Place it in `ios/Runner/GoogleService-Info.plist`
-
-### 4. Flutter Setup
+### Flutter Setup
 
 1. Install Firebase CLI: `npm install -g firebase-tools`
 2. Run: `dart pub global activate flutterfire_cli`
 3. Configure: `flutterfire configure`
-
-### 5. Environment Variables (Recommended)
-
-For production, consider using environment variables for API keys:
-
-```dart
-// In lib/firebase_options.dart
-static const FirebaseOptions android = FirebaseOptions(
-  apiKey: String.fromEnvironment('FIREBASE_ANDROID_API_KEY'),
-  // ... other config
-);
-```
-
-## Security Best Practices
-
-- Never commit Firebase configuration files to public repositories
-- Use Firebase Security Rules to protect your database
-- Regularly rotate API keys
-- Monitor Firebase usage for suspicious activity
