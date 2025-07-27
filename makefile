@@ -9,7 +9,7 @@ br-clean: build-runner-clean
 build-runner-clean:
 	flutter pub run build_runner clean
 
-br-watch: build-runner-watch
+br-w: build-runner-watch
 build-runner-watch:
 	flutter pub run build_runner watch --delete-conflicting-outputs
 
