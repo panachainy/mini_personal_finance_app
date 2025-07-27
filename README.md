@@ -2,4 +2,11 @@
 
 ## Description
 
-- [development-GuidLine](https://gist.github.com/ahmedyehya92/0257809d6fbd3047e408869f3d747a2c)
+Actually, I prefer this way [Development-Guideline](https://gist.github.com/panachainy/9ee622e2e13b574f08255b26e2c8b838)
+
+For modular & split by features
+
+## Disclaimer
+
+In in normally we use PR for development & split commit with what we do then merge PR to main branch via squash & merge
+But in this case, I need speed for development, So I just commit to dev branch directly.
