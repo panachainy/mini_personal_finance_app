@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart'
+    show TransactionModel;
+
+class TransactionList extends StatelessWidget {
+  final List<TransactionModel> transactions;
+  final Function(TransactionModel)? onTap;
+  final Function(TransactionModel)? onDelete;
+
+  const TransactionList({
+    Key? key,
+    required this.transactions,
+    this.onTap,
+    this.onDelete,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (transactions.isEmpty) {
+      return const Center(
+        child: Text(
+          'No transactions yet',
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: transactions.length,
+      itemBuilder: (context, index) {
+        final transaction = transactions[index];
+        return Card(
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor: transaction.isIncome ? Colors.green : Colors.red,
+              child: Icon(
+                transaction.isIncome ? Icons.add : Icons.remove,
+                color: Colors.white,
+              ),
+            ),
+            title: Text(transaction.description),
+            subtitle: Text(transaction.category),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${transaction.isIncome ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: transaction.isIncome ? Colors.green : Colors.red,
+                  ),
+                ),
+                Text(
+                  '${transaction.date.day}/${transaction.date.month}',
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+            onTap: () => onTap?.call(transaction),
+            onLongPress: () => onDelete?.call(transaction),
+          ),
+        );
+      },
+    );
+  }
+}
