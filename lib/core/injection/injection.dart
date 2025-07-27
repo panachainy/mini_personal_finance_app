@@ -1,7 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mini_personal_finance_app/config/environment_config.dart'
+    as env_config;
 
-import '../core/config/environment_config.dart' as env_config;
 import 'injection.config.dart';
 
 final GetIt getIt = GetIt.instance;

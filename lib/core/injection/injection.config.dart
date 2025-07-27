@@ -12,8 +12,8 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../core/config/app_config.dart' as _i221;
-import '../core/config/environment_config.dart' as _i348;
+import '../../config/app_config.dart' as _i635;
+import '../../config/environment_config.dart' as _i1070;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -26,10 +26,10 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.singleton<_i348.EnvironmentConfig>(() => _i348.EnvironmentConfig());
-    gh.factory<_i221.AppConfig>(() => _i221.TestConfig(), registerFor: {_test});
-    gh.factory<_i221.AppConfig>(() => _i221.DevConfig(), registerFor: {_dev});
-    gh.factory<_i221.AppConfig>(() => _i221.ProdConfig(), registerFor: {_prod});
+    gh.singleton<_i1070.EnvironmentConfig>(() => _i1070.EnvironmentConfig());
+    gh.factory<_i635.AppConfig>(() => _i635.TestConfig(), registerFor: {_test});
+    gh.factory<_i635.AppConfig>(() => _i635.DevConfig(), registerFor: {_dev});
+    gh.factory<_i635.AppConfig>(() => _i635.ProdConfig(), registerFor: {_prod});
     return this;
   }
 }
