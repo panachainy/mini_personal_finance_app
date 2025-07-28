@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_personal_finance_app/core/widgets/simpleAlert.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
+import 'package:mini_personal_finance_app/features/home/presentation/bloc/transaction_bloc.dart';
 
 import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_dialog.dart';
 import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_list.dart';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key, required this.title});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          TransactionBloc()..add(const TransactionEvent.started()),
+      child: HomeView(title: title),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key, required this.title});
+
   final String title;
 
   @override
