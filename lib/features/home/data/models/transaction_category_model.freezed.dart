@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TransactionCategoryModel {
 
- String get id; String get name; String get icon; int get colorCode; bool get isExpense;
+ String get id; String get name; String get icon; bool get isExpense;
 /// Create a copy of TransactionCategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TransactionCategoryModelCopyWith<TransactionCategoryModel> get copyWith => _$Tr
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.colorCode, colorCode) || other.colorCode == colorCode)&&(identical(other.isExpense, isExpense) || other.isExpense == isExpense));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.isExpense, isExpense) || other.isExpense == isExpense));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,icon,colorCode,isExpense);
+int get hashCode => Object.hash(runtimeType,id,name,icon,isExpense);
 
 @override
 String toString() {
-  return 'TransactionCategoryModel(id: $id, name: $name, icon: $icon, colorCode: $colorCode, isExpense: $isExpense)';
+  return 'TransactionCategoryModel(id: $id, name: $name, icon: $icon, isExpense: $isExpense)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TransactionCategoryModelCopyWith<$Res>  {
   factory $TransactionCategoryModelCopyWith(TransactionCategoryModel value, $Res Function(TransactionCategoryModel) _then) = _$TransactionCategoryModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String icon, int colorCode, bool isExpense
+ String id, String name, String icon, bool isExpense
 });
 
 
@@ -65,13 +65,12 @@ class _$TransactionCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of TransactionCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? icon = null,Object? colorCode = null,Object? isExpense = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? icon = null,Object? isExpense = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
-as String,colorCode: null == colorCode ? _self.colorCode : colorCode // ignore: cast_nullable_to_non_nullable
-as int,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
+as String,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -157,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  bool isExpense)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel() when $default != null:
-return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
+return $default(_that.id,_that.name,_that.icon,_that.isExpense);case _:
   return orElse();
 
 }
@@ -178,10 +177,10 @@ return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  bool isExpense)  $default,) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel():
-return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
+return $default(_that.id,_that.name,_that.icon,_that.isExpense);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +197,10 @@ return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String icon,  bool isExpense)?  $default,) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel() when $default != null:
-return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
+return $default(_that.id,_that.name,_that.icon,_that.isExpense);case _:
   return null;
 
 }
@@ -213,13 +212,12 @@ return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);
 @JsonSerializable()
 
 class _TransactionCategoryModel implements TransactionCategoryModel {
-  const _TransactionCategoryModel({required this.id, required this.name, required this.icon, required this.colorCode, required this.isExpense});
+  const _TransactionCategoryModel({required this.id, required this.name, required this.icon, required this.isExpense});
   factory _TransactionCategoryModel.fromJson(Map<String, dynamic> json) => _$TransactionCategoryModelFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  String icon;
-@override final  int colorCode;
 @override final  bool isExpense;
 
 /// Create a copy of TransactionCategoryModel
@@ -235,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.colorCode, colorCode) || other.colorCode == colorCode)&&(identical(other.isExpense, isExpense) || other.isExpense == isExpense));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.icon, icon) || other.icon == icon)&&(identical(other.isExpense, isExpense) || other.isExpense == isExpense));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,icon,colorCode,isExpense);
+int get hashCode => Object.hash(runtimeType,id,name,icon,isExpense);
 
 @override
 String toString() {
-  return 'TransactionCategoryModel(id: $id, name: $name, icon: $icon, colorCode: $colorCode, isExpense: $isExpense)';
+  return 'TransactionCategoryModel(id: $id, name: $name, icon: $icon, isExpense: $isExpense)';
 }
 
 
@@ -255,7 +253,7 @@ abstract mixin class _$TransactionCategoryModelCopyWith<$Res> implements $Transa
   factory _$TransactionCategoryModelCopyWith(_TransactionCategoryModel value, $Res Function(_TransactionCategoryModel) _then) = __$TransactionCategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String icon, int colorCode, bool isExpense
+ String id, String name, String icon, bool isExpense
 });
 
 
@@ -272,13 +270,12 @@ class __$TransactionCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of TransactionCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? icon = null,Object? colorCode = null,Object? isExpense = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? icon = null,Object? isExpense = null,}) {
   return _then(_TransactionCategoryModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
-as String,colorCode: null == colorCode ? _self.colorCode : colorCode // ignore: cast_nullable_to_non_nullable
-as int,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
+as String,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

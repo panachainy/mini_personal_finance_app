@@ -9,7 +9,6 @@ abstract class TransactionCategoryModel with _$TransactionCategoryModel {
     required String id,
     required String name,
     required String icon,
-    required int colorCode,
     required bool isExpense,
   }) = _TransactionCategoryModel;
 

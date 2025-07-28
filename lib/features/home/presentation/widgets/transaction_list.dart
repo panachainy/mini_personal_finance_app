@@ -29,7 +29,9 @@ class TransactionList extends StatelessWidget {
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
-        final categoryColor = Color(transaction.category.colorCode);
+        final categoryColor = transaction.category.isExpense
+            ? Colors.red
+            : Colors.green;
 
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -51,9 +53,7 @@ class TransactionList extends StatelessWidget {
                   '${transaction.category.isExpense ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: transaction.category.isExpense
-                        ? Colors.red
-                        : Colors.green,
+                    color: categoryColor,
                   ),
                 ),
                 Text(
