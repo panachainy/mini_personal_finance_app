@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart'
     show TransactionModel;
+import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_dialog.dart';
 import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_list.dart'
     show TransactionList;
 
@@ -52,7 +53,29 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ],
                 onTap: (transaction) {
-                  // Handle tap
+                  showDialog(
+                    context: context,
+                    builder: (context) => TransactionDialog(
+                      onSubmit:
+                          (
+                            String? id,
+                            bool isExpense,
+                            String category,
+                            double amount,
+                            String description,
+                          ) {
+                            // Handle transaction creation
+                            // Navigator.of(context).pop();
+
+                            print('Transaction created: $description, $amount');
+                          },
+                      id: transaction.id,
+                      isExpense: transaction.category.isExpense,
+                      category: transaction.category.name,
+                      amount: transaction.amount,
+                      description: transaction.description,
+                    ),
+                  );
                 },
                 onDelete: (transaction) {
                   // Handle delete
@@ -64,7 +87,22 @@ class MyHomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO: Navigate to add transaction page
+          showDialog(
+            context: context,
+            builder: (context) => TransactionDialog(
+              onSubmit:
+                  (
+                    String? id,
+                    bool isExpense,
+                    String category,
+                    double amount,
+                    String description,
+                  ) {
+                    // Handle transaction creation
+                    print('Transaction created: $description, $amount');
+                  },
+            ),
+          );
         },
         tooltip: 'Add Transaction',
         child: const Icon(Icons.add),
