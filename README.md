@@ -10,3 +10,8 @@ For modular & split by features
 
 In in normally we use PR for development & split commit with what we do then merge PR to main branch via squash & merge
 But in this case, I need speed for development, So I just commit to dev branch directly.
+
+## Design
+
+- widgets is dump widget, no logic inside
+- bloc is state management, for manage state & logic & event
