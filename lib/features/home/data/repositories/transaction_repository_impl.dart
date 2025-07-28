@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:mini_personal_finance_app/core/network/network.dart';
 import 'package:mini_personal_finance_app/features/home/data/datasources/transaction_data_source.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_entity.dart';
 import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_entity.dart';
 import 'package:mini_personal_finance_app/features/home/domain/repositories/transaction_repository.dart';
 
@@ -34,9 +35,36 @@ class TransactionRepositoryImpl implements TransactionRepository {
   }
 
   @override
-  Future<List<TransactionEntity>> getTransactionModels() {
-    // TODO: implement getTransactionModels
-    throw UnimplementedError();
+  Future<List<TransactionEntity>> getTransactions() async {
+    // TODO: implement getTransactions
+    final List<TransactionEntity> s = [
+      TransactionEntity(
+        id: '1',
+        description: 'Grocery Shopping',
+        amount: 50.0,
+        category: const TransactionCategoryEntity(
+          id: '1',
+          name: 'Food',
+          icon: '🍔',
+          isExpense: true,
+        ),
+        date: DateTime.now(),
+      ),
+      TransactionEntity(
+        id: '2',
+        description: 'Salary',
+        amount: 1500.0,
+        category: TransactionCategoryEntity(
+          id: '2',
+          name: 'Salary',
+          icon: '💼',
+          isExpense: false,
+        ),
+        date: DateTime.now(),
+      ),
+    ];
+
+    return s;
   }
 
   @override
@@ -60,5 +88,31 @@ class TransactionRepositoryImpl implements TransactionRepository {
   Future<void> updateTransactionModel(TransactionEntity transactionModel) {
     // TODO: implement updateTransactionModel
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<TransactionCategoryEntity>> getCategories() {
+    // TODO: this is mocks
+
+    return Future.value([
+      TransactionCategoryEntity(
+        id: '1',
+        name: 'Food',
+        icon: '🍔',
+        isExpense: true,
+      ),
+      TransactionCategoryEntity(
+        id: '2',
+        name: 'Transport',
+        icon: '🚗',
+        isExpense: true,
+      ),
+      TransactionCategoryEntity(
+        id: '3',
+        name: 'Salary',
+        icon: '💰',
+        isExpense: false,
+      ),
+    ]);
   }
 }

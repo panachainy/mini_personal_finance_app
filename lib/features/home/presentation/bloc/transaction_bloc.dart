@@ -11,6 +11,7 @@ part 'transaction_bloc.freezed.dart';
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   // In-memory storage for demonstration - in a real app, this would be injected as a repository
   final List<TransactionEntity> _transactions = [];
+  late List<TransactionCategoryEntity> _categories = [];
   final TransactionRepository _transactionRepository;
 
   TransactionBloc({required TransactionRepository transactionRepository})
@@ -36,36 +37,12 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     try {
       emit(const TransactionState.loading());
 
-      // Simulate API delay
-      await Future.delayed(const Duration(milliseconds: 500));
+      final newTransactions = await _transactionRepository.getTransactions();
 
-      // TODO: impl repository to fetch transactions
-      _transactions.addAll([
-        TransactionEntity(
-          id: '1',
-          description: 'Grocery Shopping',
-          amount: 50.0,
-          category: TransactionCategoryEntity(
-            id: '1',
-            name: 'Food',
-            icon: '🍔',
-            isExpense: true,
-          ),
-          date: DateTime.now(),
-        ),
-        TransactionEntity(
-          id: '2',
-          description: 'Salary',
-          amount: 1500.0,
-          category: TransactionCategoryEntity(
-            id: '2',
-            name: 'Salary',
-            icon: '💼',
-            isExpense: false,
-          ),
-          date: DateTime.now(),
-        ),
-      ]);
+      _transactions.clear();
+      _transactions.addAll(newTransactions);
+
+      _categories = await _transactionRepository.getCategories();
 
       emit(TransactionState.loaded(transactions: List.from(_transactions)));
     } catch (e) {
