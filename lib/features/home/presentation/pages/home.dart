@@ -75,6 +75,7 @@ class HomeView extends StatelessWidget {
                                     String category,
                                     double amount,
                                     String description,
+                                    DateTime date,
                                   ) {
                                     // TODO: Handle transaction update
                                     print(
@@ -86,6 +87,7 @@ class HomeView extends StatelessWidget {
                               category: transaction.category.name,
                               amount: transaction.amount,
                               description: transaction.description,
+                              date: transaction.date,
                             ),
                           );
                         },
@@ -123,6 +125,7 @@ class HomeView extends StatelessWidget {
                     String category,
                     double amount,
                     String description,
+                    DateTime date,
                   ) {
                     context.read<TransactionBloc>().add(
                       TransactionEvent.addTransaction(
