@@ -12,7 +12,7 @@ _TransactionCategoryModel _$TransactionCategoryModelFromJson(
   id: json['id'] as String,
   name: json['name'] as String,
   icon: json['icon'] as String,
-  colorCode: json['colorCode'] as String,
+  colorCode: (json['colorCode'] as num).toInt(),
   isExpense: json['isExpense'] as bool,
 );
 

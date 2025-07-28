@@ -29,7 +29,7 @@ class TransactionList extends StatelessWidget {
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
-        final categoryColor = Color(int.parse(transaction.category.colorCode));
+        final categoryColor = Color(transaction.category.colorCode);
 
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TransactionCategoryModel {
 
- String get id; String get name; String get icon; String get colorCode; bool get isExpense;
+ String get id; String get name; String get icon; int get colorCode; bool get isExpense;
 /// Create a copy of TransactionCategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $TransactionCategoryModelCopyWith<$Res>  {
   factory $TransactionCategoryModelCopyWith(TransactionCategoryModel value, $Res Function(TransactionCategoryModel) _then) = _$TransactionCategoryModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String icon, String colorCode, bool isExpense
+ String id, String name, String icon, int colorCode, bool isExpense
 });
 
 
@@ -71,7 +71,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,colorCode: null == colorCode ? _self.colorCode : colorCode // ignore: cast_nullable_to_non_nullable
-as String,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
+as int,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  String colorCode,  bool isExpense)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel() when $default != null:
 return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
@@ -178,7 +178,7 @@ return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  String colorCode,  bool isExpense)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)  $default,) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel():
 return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
@@ -198,7 +198,7 @@ return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String icon,  String colorCode,  bool isExpense)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String icon,  int colorCode,  bool isExpense)?  $default,) {final _that = this;
 switch (_that) {
 case _TransactionCategoryModel() when $default != null:
 return $default(_that.id,_that.name,_that.icon,_that.colorCode,_that.isExpense);case _:
@@ -219,7 +219,7 @@ class _TransactionCategoryModel implements TransactionCategoryModel {
 @override final  String id;
 @override final  String name;
 @override final  String icon;
-@override final  String colorCode;
+@override final  int colorCode;
 @override final  bool isExpense;
 
 /// Create a copy of TransactionCategoryModel
@@ -255,7 +255,7 @@ abstract mixin class _$TransactionCategoryModelCopyWith<$Res> implements $Transa
   factory _$TransactionCategoryModelCopyWith(_TransactionCategoryModel value, $Res Function(_TransactionCategoryModel) _then) = __$TransactionCategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String icon, String colorCode, bool isExpense
+ String id, String name, String icon, int colorCode, bool isExpense
 });
 
 
@@ -278,7 +278,7 @@ id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,icon: null == icon ? _self.icon : icon // ignore: cast_nullable_to_non_nullable
 as String,colorCode: null == colorCode ? _self.colorCode : colorCode // ignore: cast_nullable_to_non_nullable
-as String,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
+as int,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
