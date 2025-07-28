@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mini_personal_finance_app/core/widgets/simpleAlert.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart'
-    show TransactionModel;
+import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
+
 import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_dialog.dart';
-import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_list.dart'
-    show TransactionList;
+import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_list.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
@@ -64,9 +64,6 @@ class MyHomePage extends StatelessWidget {
                             double amount,
                             String description,
                           ) {
-                            // Handle transaction creation
-                            // Navigator.of(context).pop();
-
                             print('Transaction created: $description, $amount');
                           },
                       id: transaction.id,
@@ -78,7 +75,16 @@ class MyHomePage extends StatelessWidget {
                   );
                 },
                 onDelete: (transaction) {
-                  // Handle delete
+                  SimpleAlert.showConfirm(
+                    context,
+                    title: 'Delete Transaction',
+                    message:
+                        'Are you sure you want to delete this transaction?',
+                    onConfirm: () {
+                      // TODO: Handle transaction deletion
+                      print('Transaction deleted: ${transaction.id}');
+                    },
+                  );
                 },
               ),
             ),
