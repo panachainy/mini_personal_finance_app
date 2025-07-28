@@ -15,3 +15,4 @@ But in this case, I need speed for development, So I just commit to dev branch d
 
 - widgets is dump widget, no logic inside
 - bloc is state management, for manage state & logic & event
+- datasource I decide to use Firebase.Firestore is support both offline & online
