@@ -10,7 +10,9 @@ _TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) =>
     _TransactionModel(
       id: json['id'] as String,
       description: json['description'] as String,
-      category: json['category'] as String,
+      category: TransactionCategoryModel.fromJson(
+        json['category'] as Map<String, dynamic>,
+      ),
       amount: (json['amount'] as num).toDouble(),
       date: DateTime.parse(json['date'] as String),
       isIncome: json['isIncome'] as bool,

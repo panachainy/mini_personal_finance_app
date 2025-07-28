@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TransactionModel {
 
- String get id; String get description; String get category; double get amount; DateTime get date; bool get isIncome;
+ String get id; String get description; TransactionCategoryModel get category; double get amount; DateTime get date; bool get isIncome;
 /// Create a copy of TransactionModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,11 +48,11 @@ abstract mixin class $TransactionModelCopyWith<$Res>  {
   factory $TransactionModelCopyWith(TransactionModel value, $Res Function(TransactionModel) _then) = _$TransactionModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String description, String category, double amount, DateTime date, bool isIncome
+ String id, String description, TransactionCategoryModel category, double amount, DateTime date, bool isIncome
 });
 
 
-
+$TransactionCategoryModelCopyWith<$Res> get category;
 
 }
 /// @nodoc
@@ -70,13 +70,22 @@ class _$TransactionModelCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,isIncome: null == isIncome ? _self.isIncome : isIncome // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
-
+/// Create a copy of TransactionModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TransactionCategoryModelCopyWith<$Res> get category {
+  
+  return $TransactionCategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
 }
 
 
@@ -158,7 +167,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  String category,  double amount,  DateTime date,  bool isIncome)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TransactionModel() when $default != null:
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
@@ -179,7 +188,7 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  String category,  double amount,  DateTime date,  bool isIncome)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)  $default,) {final _that = this;
 switch (_that) {
 case _TransactionModel():
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
@@ -199,7 +208,7 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  String category,  double amount,  DateTime date,  bool isIncome)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)?  $default,) {final _that = this;
 switch (_that) {
 case _TransactionModel() when $default != null:
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
@@ -219,7 +228,7 @@ class _TransactionModel implements TransactionModel {
 
 @override final  String id;
 @override final  String description;
-@override final  String category;
+@override final  TransactionCategoryModel category;
 @override final  double amount;
 @override final  DateTime date;
 @override final  bool isIncome;
@@ -257,11 +266,11 @@ abstract mixin class _$TransactionModelCopyWith<$Res> implements $TransactionMod
   factory _$TransactionModelCopyWith(_TransactionModel value, $Res Function(_TransactionModel) _then) = __$TransactionModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String description, String category, double amount, DateTime date, bool isIncome
+ String id, String description, TransactionCategoryModel category, double amount, DateTime date, bool isIncome
 });
 
 
-
+@override $TransactionCategoryModelCopyWith<$Res> get category;
 
 }
 /// @nodoc
@@ -279,14 +288,23 @@ class __$TransactionModelCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,isIncome: null == isIncome ? _self.isIncome : isIncome // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
 
-
+/// Create a copy of TransactionModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TransactionCategoryModelCopyWith<$Res> get category {
+  
+  return $TransactionCategoryModelCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
 }
 
 // dart format on
