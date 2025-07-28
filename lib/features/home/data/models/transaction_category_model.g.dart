@@ -12,7 +12,7 @@ _TransactionCategoryModel _$TransactionCategoryModelFromJson(
   id: json['id'] as String,
   name: json['name'] as String,
   icon: json['icon'] as String,
-  color: json['color'] as String,
+  colorCode: json['colorCode'] as String,
   isExpense: json['isExpense'] as bool,
 );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$TransactionCategoryModelToJson(
   'id': instance.id,
   'name': instance.name,
   'icon': instance.icon,
-  'color': instance.color,
+  'colorCode': instance.colorCode,
   'isExpense': instance.isExpense,
 };

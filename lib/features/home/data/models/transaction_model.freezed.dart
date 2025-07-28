@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TransactionModel {
 
- String get id; String get description; TransactionCategoryModel get category; double get amount; DateTime get date; bool get isIncome;
+ String get id; String get description; TransactionCategoryModel get category; double get amount; DateTime get date;
 /// Create a copy of TransactionModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TransactionModelCopyWith<TransactionModel> get copyWith => _$TransactionModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date)&&(identical(other.isIncome, isIncome) || other.isIncome == isIncome));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,description,category,amount,date,isIncome);
+int get hashCode => Object.hash(runtimeType,id,description,category,amount,date);
 
 @override
 String toString() {
-  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date, isIncome: $isIncome)';
+  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TransactionModelCopyWith<$Res>  {
   factory $TransactionModelCopyWith(TransactionModel value, $Res Function(TransactionModel) _then) = _$TransactionModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String description, TransactionCategoryModel category, double amount, DateTime date, bool isIncome
+ String id, String description, TransactionCategoryModel category, double amount, DateTime date
 });
 
 
@@ -65,15 +65,14 @@ class _$TransactionModelCopyWithImpl<$Res>
 
 /// Create a copy of TransactionModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,Object? isIncome = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as DateTime,isIncome: null == isIncome ? _self.isIncome : isIncome // ignore: cast_nullable_to_non_nullable
-as bool,
+as DateTime,
   ));
 }
 /// Create a copy of TransactionModel
@@ -167,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TransactionModel() when $default != null:
-return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
+return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   return orElse();
 
 }
@@ -188,10 +187,10 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)  $default,) {final _that = this;
 switch (_that) {
 case _TransactionModel():
-return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
+return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +207,10 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date,  bool isIncome)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  $default,) {final _that = this;
 switch (_that) {
 case _TransactionModel() when $default != null:
-return $default(_that.id,_that.description,_that.category,_that.amount,_that.date,_that.isIncome);case _:
+return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   return null;
 
 }
@@ -223,7 +222,7 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 @JsonSerializable()
 
 class _TransactionModel implements TransactionModel {
-   _TransactionModel({required this.id, required this.description, required this.category, required this.amount, required this.date, required this.isIncome});
+   _TransactionModel({required this.id, required this.description, required this.category, required this.amount, required this.date});
   factory _TransactionModel.fromJson(Map<String, dynamic> json) => _$TransactionModelFromJson(json);
 
 @override final  String id;
@@ -231,7 +230,6 @@ class _TransactionModel implements TransactionModel {
 @override final  TransactionCategoryModel category;
 @override final  double amount;
 @override final  DateTime date;
-@override final  bool isIncome;
 
 /// Create a copy of TransactionModel
 /// with the given fields replaced by the non-null parameter values.
@@ -246,16 +244,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date)&&(identical(other.isIncome, isIncome) || other.isIncome == isIncome));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,description,category,amount,date,isIncome);
+int get hashCode => Object.hash(runtimeType,id,description,category,amount,date);
 
 @override
 String toString() {
-  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date, isIncome: $isIncome)';
+  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
 }
 
 
@@ -266,7 +264,7 @@ abstract mixin class _$TransactionModelCopyWith<$Res> implements $TransactionMod
   factory _$TransactionModelCopyWith(_TransactionModel value, $Res Function(_TransactionModel) _then) = __$TransactionModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String description, TransactionCategoryModel category, double amount, DateTime date, bool isIncome
+ String id, String description, TransactionCategoryModel category, double amount, DateTime date
 });
 
 
@@ -283,15 +281,14 @@ class __$TransactionModelCopyWithImpl<$Res>
 
 /// Create a copy of TransactionModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,Object? isIncome = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,}) {
   return _then(_TransactionModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
-as DateTime,isIncome: null == isIncome ? _self.isIncome : isIncome // ignore: cast_nullable_to_non_nullable
-as bool,
+as DateTime,
   ));
 }
 

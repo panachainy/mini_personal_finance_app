@@ -13,7 +13,6 @@ abstract class TransactionModel with _$TransactionModel {
     required TransactionCategoryModel category,
     required double amount,
     required DateTime date,
-    required bool isIncome,
   }) = _TransactionModel;
 
   factory TransactionModel.fromJson(Map<String, dynamic> json) =>

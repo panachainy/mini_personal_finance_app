@@ -15,7 +15,6 @@ _TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) =>
       ),
       amount: (json['amount'] as num).toDouble(),
       date: DateTime.parse(json['date'] as String),
-      isIncome: json['isIncome'] as bool,
     );
 
 Map<String, dynamic> _$TransactionModelToJson(_TransactionModel instance) =>
@@ -25,5 +24,4 @@ Map<String, dynamic> _$TransactionModelToJson(_TransactionModel instance) =>
       'category': instance.category,
       'amount': instance.amount,
       'date': instance.date.toIso8601String(),
-      'isIncome': instance.isIncome,
     };

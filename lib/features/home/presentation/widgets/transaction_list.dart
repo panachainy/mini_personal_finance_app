@@ -29,27 +29,31 @@ class TransactionList extends StatelessWidget {
       itemCount: transactions.length,
       itemBuilder: (context, index) {
         final transaction = transactions[index];
+        final categoryColor = Color(int.parse(transaction.category.colorCode));
+
         return Card(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: transaction.isIncome ? Colors.green : Colors.red,
-              child: Icon(
-                transaction.isIncome ? Icons.add : Icons.remove,
-                color: Colors.white,
+              backgroundColor: categoryColor,
+              child: Text(
+                transaction.category.icon,
+                style: const TextStyle(fontSize: 20),
               ),
             ),
             title: Text(transaction.description),
-            subtitle: Text(transaction.category),
+            subtitle: Text(transaction.category.name),
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  '${transaction.isIncome ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
+                  '${transaction.category.isExpense ? '+' : '-'}\$${transaction.amount.toStringAsFixed(2)}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: transaction.isIncome ? Colors.green : Colors.red,
+                    color: transaction.category.isExpense
+                        ? Colors.red
+                        : Colors.green,
                   ),
                 ),
                 Text(
