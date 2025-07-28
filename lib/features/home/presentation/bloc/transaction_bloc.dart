@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
 import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
@@ -34,6 +35,36 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       // Simulate API delay
       await Future.delayed(const Duration(milliseconds: 500));
+
+      // TODO: impl repository to fetch transactions
+      _transactions.addAll([
+        TransactionModel(
+          id: '1',
+          description: 'Grocery Shopping',
+          amount: 50.0,
+          category: TransactionCategoryModel(
+            id: '1',
+            name: 'Food',
+            icon: '🍔',
+            colorCode: Colors.red.toARGB32(),
+            isExpense: true,
+          ),
+          date: DateTime.now(),
+        ),
+        TransactionModel(
+          id: '2',
+          description: 'Salary',
+          amount: 1500.0,
+          category: TransactionCategoryModel(
+            id: '2',
+            name: 'Salary',
+            icon: '💼',
+            colorCode: Colors.green.toARGB32(),
+            isExpense: false,
+          ),
+          date: DateTime.now(),
+        ),
+      ]);
 
       emit(TransactionState.loaded(transactions: List.from(_transactions)));
     } catch (e) {

@@ -39,68 +39,59 @@ class HomeView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: TransactionList(
-                transactions: [
-                  // TODO: Replace with actual transaction data
-                  TransactionModel(
-                    id: '1',
-                    description: 'Grocery Shopping',
-                    amount: 50.0,
-                    category: TransactionCategoryModel(
-                      id: '1',
-                      name: 'Food',
-                      icon: '🍔',
-                      colorCode: Colors.red.toARGB32(),
-                      isExpense: true,
+              child: BlocBuilder<TransactionBloc, TransactionState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () => const Center(
+                      child: Text(
+                        'Press the + button to add your first transaction',
+                      ),
                     ),
-                    date: DateTime.now(),
-                  ),
-                  TransactionModel(
-                    id: '2',
-                    description: 'Salary',
-                    amount: 1500.0,
-                    category: TransactionCategoryModel(
-                      id: '2',
-                      name: 'Salary',
-                      icon: '💼',
-                      colorCode: Colors.green.toARGB32(),
-                      isExpense: false,
-                    ),
-                    date: DateTime.now(),
-                  ),
-                ],
-                onTap: (transaction) {
-                  showDialog(
-                    context: context,
-                    builder: (context) => TransactionDialog(
-                      onSubmit:
-                          (
-                            String? id,
-                            bool isExpense,
-                            String category,
-                            double amount,
-                            String description,
-                          ) {
-                            print('Transaction created: $description, $amount');
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    loaded: (transactions) => TransactionList(
+                      transactions: state.maybeWhen(
+                        loaded: (transactions) => transactions,
+                        orElse: () => [],
+                      ),
+                      onTap: (transaction) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => TransactionDialog(
+                            onSubmit:
+                                (
+                                  String? id,
+                                  bool isExpense,
+                                  String category,
+                                  double amount,
+                                  String description,
+                                ) {
+                                  print(
+                                    'Transaction created: $description, $amount',
+                                  );
+                                },
+                            id: transaction.id,
+                            isExpense: transaction.category.isExpense,
+                            category: transaction.category.name,
+                            amount: transaction.amount,
+                            description: transaction.description,
+                          ),
+                        );
+                      },
+                      onDelete: (transaction) {
+                        SimpleAlert.showConfirm(
+                          context,
+                          title: 'Delete Transaction',
+                          message:
+                              'Are you sure you want to delete this transaction?',
+                          onConfirm: () {
+                            // TODO: Handle transaction deletion
+                            print('Transaction deleted: ${transaction.id}');
                           },
-                      id: transaction.id,
-                      isExpense: transaction.category.isExpense,
-                      category: transaction.category.name,
-                      amount: transaction.amount,
-                      description: transaction.description,
+                        );
+                      },
                     ),
-                  );
-                },
-                onDelete: (transaction) {
-                  SimpleAlert.showConfirm(
-                    context,
-                    title: 'Delete Transaction',
-                    message:
-                        'Are you sure you want to delete this transaction?',
-                    onConfirm: () {
-                      // TODO: Handle transaction deletion
-                      print('Transaction deleted: ${transaction.id}');
-                    },
+                    error: (message) => Center(child: Text('Error: $message')),
                   );
                 },
               ),
