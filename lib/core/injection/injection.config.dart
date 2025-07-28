@@ -22,6 +22,7 @@ import '../../features/home/data/repositories/transaction_repository_impl.dart'
 import '../../features/home/domain/repositories/transaction_repository.dart'
     as _i705;
 import '../network/network.dart' as _i855;
+import 'register_module.dart' as _i291;
 
 const String _test = 'test';
 const String _dev = 'dev';
@@ -34,7 +35,9 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final registerModule = _$RegisterModule();
     gh.singleton<_i1070.EnvironmentConfig>(() => _i1070.EnvironmentConfig());
+    gh.singleton<_i895.Connectivity>(() => registerModule.connectivity);
     gh.factory<_i613.TransactionDataSource>(
       () => _i613.TransactionDataSourceImpl(),
     );
@@ -53,3 +56,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$RegisterModule extends _i291.RegisterModule {}

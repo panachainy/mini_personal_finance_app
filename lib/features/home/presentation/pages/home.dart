@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mini_personal_finance_app/core/injection/injection.dart';
 import 'package:mini_personal_finance_app/core/widgets/simpleAlert.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_model.dart';
+import 'package:mini_personal_finance_app/features/home/domain/repositories/transaction_repository.dart';
 import 'package:mini_personal_finance_app/features/home/presentation/bloc/transaction_bloc.dart';
 
 import 'package:mini_personal_finance_app/features/home/presentation/widgets/transaction_dialog.dart';
@@ -12,9 +15,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final transactionRepository = getIt<TransactionRepository>();
+
     return BlocProvider(
       create: (context) =>
-          TransactionBloc()..add(const TransactionEvent.started()),
+          TransactionBloc(transactionRepository: transactionRepository)
+            ..add(const TransactionEvent.started()),
       child: HomeView(title: title),
     );
   }
@@ -117,8 +123,19 @@ class HomeView extends StatelessWidget {
                     double amount,
                     String description,
                   ) {
-                    // Handle transaction creation
-                    print('Transaction created: $description, $amount');
+                    context.read<TransactionBloc>().add(
+                      TransactionEvent.addTransaction(
+                        description: description,
+                        category: TransactionCategoryModel(
+                          id: '',
+                          name: category,
+                          icon: '',
+                          isExpense: isExpense,
+                        ),
+                        amount: amount,
+                        date: DateTime.now(),
+                      ),
+                    );
                   },
             ),
           );
