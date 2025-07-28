@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart'
-    show TransactionCategoryModel;
+import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
 
 part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';
