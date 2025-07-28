@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mini_personal_finance_app/core/injection/injection.dart';
 import 'package:mini_personal_finance_app/core/widgets/simpleAlert.dart';
-import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_model.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_entity.dart';
 import 'package:mini_personal_finance_app/features/home/domain/repositories/transaction_repository.dart';
 import 'package:mini_personal_finance_app/features/home/presentation/bloc/transaction_bloc.dart';
 
@@ -126,7 +126,7 @@ class HomeView extends StatelessWidget {
                     context.read<TransactionBloc>().add(
                       TransactionEvent.addTransaction(
                         description: description,
-                        category: TransactionCategoryModel(
+                        category: TransactionCategoryEntity(
                           id: '',
                           name: category,
                           icon: '',

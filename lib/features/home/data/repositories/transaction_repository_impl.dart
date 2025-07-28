@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:mini_personal_finance_app/core/network/network.dart';
 import 'package:mini_personal_finance_app/features/home/data/datasources/transaction_data_source.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_entity.dart';
 import 'package:mini_personal_finance_app/features/home/domain/repositories/transaction_repository.dart';
 
 @Injectable(as: TransactionRepository)
@@ -15,7 +15,9 @@ class TransactionRepositoryImpl implements TransactionRepository {
   });
 
   @override
-  Future<void> addTransactionModel(TransactionModel transactionModel) {
+  Future<void> addTransactionModel(TransactionEntity transactionModel) {
+    // TODO: query categoryId and add here
+
     return dataSource.addTransaction(transactionModel.toJson());
   }
 
@@ -26,19 +28,19 @@ class TransactionRepositoryImpl implements TransactionRepository {
   }
 
   @override
-  Future<TransactionModel> getTransactionModelById(String id) {
+  Future<TransactionEntity> getTransactionModelById(String id) {
     // TODO: implement getTransactionModelById
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TransactionModel>> getTransactionModels() {
+  Future<List<TransactionEntity>> getTransactionModels() {
     // TODO: implement getTransactionModels
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TransactionModel>> getTransactionModelsByCategory(
+  Future<List<TransactionEntity>> getTransactionModelsByCategory(
     String category,
   ) {
     // TODO: implement getTransactionModelsByCategory
@@ -46,7 +48,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
   }
 
   @override
-  Future<List<TransactionModel>> getTransactionModelsByDateRange(
+  Future<List<TransactionEntity>> getTransactionModelsByDateRange(
     DateTime startDate,
     DateTime endDate,
   ) {
@@ -55,7 +57,7 @@ class TransactionRepositoryImpl implements TransactionRepository {
   }
 
   @override
-  Future<void> updateTransactionModel(TransactionModel transactionModel) {
+  Future<void> updateTransactionModel(TransactionEntity transactionModel) {
     // TODO: implement updateTransactionModel
     throw UnimplementedError();
   }

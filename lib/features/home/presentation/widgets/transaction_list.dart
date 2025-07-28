@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart'
-    show TransactionModel;
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_entity.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<TransactionModel> transactions;
-  final Function(TransactionModel)? onTap;
-  final Function(TransactionModel)? onDelete;
+  final List<TransactionEntity> transactions;
+  final Function(TransactionEntity)? onTap;
+  final Function(TransactionEntity)? onDelete;
 
   const TransactionList({
     super.key,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'transaction_model.dart';
+part of 'transaction_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -13,22 +13,22 @@ part of 'transaction_model.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$TransactionModel {
+mixin _$TransactionEntity {
 
- String get id; String get description; TransactionCategoryModel get category; double get amount; DateTime get date;
-/// Create a copy of TransactionModel
+ String get id; String get description; TransactionCategoryEntity get category; double get amount; DateTime get date;
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$TransactionModelCopyWith<TransactionModel> get copyWith => _$TransactionModelCopyWithImpl<TransactionModel>(this as TransactionModel, _$identity);
+$TransactionEntityCopyWith<TransactionEntity> get copyWith => _$TransactionEntityCopyWithImpl<TransactionEntity>(this as TransactionEntity, _$identity);
 
-  /// Serializes this TransactionModel to a JSON map.
+  /// Serializes this TransactionEntity to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -37,59 +37,59 @@ int get hashCode => Object.hash(runtimeType,id,description,category,amount,date)
 
 @override
 String toString() {
-  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
+  return 'TransactionEntity(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $TransactionModelCopyWith<$Res>  {
-  factory $TransactionModelCopyWith(TransactionModel value, $Res Function(TransactionModel) _then) = _$TransactionModelCopyWithImpl;
+abstract mixin class $TransactionEntityCopyWith<$Res>  {
+  factory $TransactionEntityCopyWith(TransactionEntity value, $Res Function(TransactionEntity) _then) = _$TransactionEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String description, TransactionCategoryModel category, double amount, DateTime date
+ String id, String description, TransactionCategoryEntity category, double amount, DateTime date
 });
 
 
-$TransactionCategoryModelCopyWith<$Res> get category;
+$TransactionCategoryEntityCopyWith<$Res> get category;
 
 }
 /// @nodoc
-class _$TransactionModelCopyWithImpl<$Res>
-    implements $TransactionModelCopyWith<$Res> {
-  _$TransactionModelCopyWithImpl(this._self, this._then);
+class _$TransactionEntityCopyWithImpl<$Res>
+    implements $TransactionEntityCopyWith<$Res> {
+  _$TransactionEntityCopyWithImpl(this._self, this._then);
 
-  final TransactionModel _self;
-  final $Res Function(TransactionModel) _then;
+  final TransactionEntity _self;
+  final $Res Function(TransactionEntity) _then;
 
-/// Create a copy of TransactionModel
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryEntity,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
-/// Create a copy of TransactionModel
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TransactionCategoryModelCopyWith<$Res> get category {
+$TransactionCategoryEntityCopyWith<$Res> get category {
   
-  return $TransactionCategoryModelCopyWith<$Res>(_self.category, (value) {
+  return $TransactionCategoryEntityCopyWith<$Res>(_self.category, (value) {
     return _then(_self.copyWith(category: value));
   });
 }
 }
 
 
-/// Adds pattern-matching-related methods to [TransactionModel].
-extension TransactionModelPatterns on TransactionModel {
+/// Adds pattern-matching-related methods to [TransactionEntity].
+extension TransactionEntityPatterns on TransactionEntity {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -102,10 +102,10 @@ extension TransactionModelPatterns on TransactionModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionModel value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionEntity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _TransactionModel() when $default != null:
+case _TransactionEntity() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -124,10 +124,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionModel value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionEntity value)  $default,){
 final _that = this;
 switch (_that) {
-case _TransactionModel():
+case _TransactionEntity():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -145,10 +145,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionModel value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionEntity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _TransactionModel() when $default != null:
+case _TransactionEntity() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -166,9 +166,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _TransactionModel() when $default != null:
+case _TransactionEntity() when $default != null:
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   return orElse();
 
@@ -187,9 +187,9 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  TransactionCategoryEntity category,  double amount,  DateTime date)  $default,) {final _that = this;
 switch (_that) {
-case _TransactionModel():
+case _TransactionEntity():
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   throw StateError('Unexpected subclass');
 
@@ -207,9 +207,9 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  $default,) {final _that = this;
 switch (_that) {
-case _TransactionModel() when $default != null:
+case _TransactionEntity() when $default != null:
 return $default(_that.id,_that.description,_that.category,_that.amount,_that.date);case _:
   return null;
 
@@ -221,30 +221,30 @@ return $default(_that.id,_that.description,_that.category,_that.amount,_that.dat
 /// @nodoc
 @JsonSerializable()
 
-class _TransactionModel implements TransactionModel {
-   _TransactionModel({required this.id, required this.description, required this.category, required this.amount, required this.date});
-  factory _TransactionModel.fromJson(Map<String, dynamic> json) => _$TransactionModelFromJson(json);
+class _TransactionEntity implements TransactionEntity {
+   _TransactionEntity({required this.id, required this.description, required this.category, required this.amount, required this.date});
+  factory _TransactionEntity.fromJson(Map<String, dynamic> json) => _$TransactionEntityFromJson(json);
 
 @override final  String id;
 @override final  String description;
-@override final  TransactionCategoryModel category;
+@override final  TransactionCategoryEntity category;
 @override final  double amount;
 @override final  DateTime date;
 
-/// Create a copy of TransactionModel
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$TransactionModelCopyWith<_TransactionModel> get copyWith => __$TransactionModelCopyWithImpl<_TransactionModel>(this, _$identity);
+_$TransactionEntityCopyWith<_TransactionEntity> get copyWith => __$TransactionEntityCopyWithImpl<_TransactionEntity>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$TransactionModelToJson(this, );
+  return _$TransactionEntityToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionModel&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -253,52 +253,52 @@ int get hashCode => Object.hash(runtimeType,id,description,category,amount,date)
 
 @override
 String toString() {
-  return 'TransactionModel(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
+  return 'TransactionEntity(id: $id, description: $description, category: $category, amount: $amount, date: $date)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$TransactionModelCopyWith<$Res> implements $TransactionModelCopyWith<$Res> {
-  factory _$TransactionModelCopyWith(_TransactionModel value, $Res Function(_TransactionModel) _then) = __$TransactionModelCopyWithImpl;
+abstract mixin class _$TransactionEntityCopyWith<$Res> implements $TransactionEntityCopyWith<$Res> {
+  factory _$TransactionEntityCopyWith(_TransactionEntity value, $Res Function(_TransactionEntity) _then) = __$TransactionEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String description, TransactionCategoryModel category, double amount, DateTime date
+ String id, String description, TransactionCategoryEntity category, double amount, DateTime date
 });
 
 
-@override $TransactionCategoryModelCopyWith<$Res> get category;
+@override $TransactionCategoryEntityCopyWith<$Res> get category;
 
 }
 /// @nodoc
-class __$TransactionModelCopyWithImpl<$Res>
-    implements _$TransactionModelCopyWith<$Res> {
-  __$TransactionModelCopyWithImpl(this._self, this._then);
+class __$TransactionEntityCopyWithImpl<$Res>
+    implements _$TransactionEntityCopyWith<$Res> {
+  __$TransactionEntityCopyWithImpl(this._self, this._then);
 
-  final _TransactionModel _self;
-  final $Res Function(_TransactionModel) _then;
+  final _TransactionEntity _self;
+  final $Res Function(_TransactionEntity) _then;
 
-/// Create a copy of TransactionModel
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? description = null,Object? category = null,Object? amount = null,Object? date = null,}) {
-  return _then(_TransactionModel(
+  return _then(_TransactionEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryEntity,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
 
-/// Create a copy of TransactionModel
+/// Create a copy of TransactionEntity
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TransactionCategoryModelCopyWith<$Res> get category {
+$TransactionCategoryEntityCopyWith<$Res> get category {
   
-  return $TransactionCategoryModelCopyWith<$Res>(_self.category, (value) {
+  return $TransactionCategoryEntityCopyWith<$Res>(_self.category, (value) {
     return _then(_self.copyWith(category: value));
   });
 }

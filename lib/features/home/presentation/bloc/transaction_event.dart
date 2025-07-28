@@ -6,7 +6,7 @@ class TransactionEvent with _$TransactionEvent {
   const factory TransactionEvent.loadTransactions() = _LoadTransactions;
   const factory TransactionEvent.addTransaction({
     required String description,
-    required TransactionCategoryModel category,
+    required TransactionCategoryEntity category,
     required double amount,
     required DateTime date,
   }) = _AddTransaction;

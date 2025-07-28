@@ -1,0 +1,289 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'transaction_dto.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+// dart format off
+T _$identity<T>(T value) => value;
+
+/// @nodoc
+mixin _$TransactionDTO {
+
+ String get id; String get description; int get categoryId; double get amount; DateTime get date;
+/// Create a copy of TransactionDTO
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TransactionDTOCopyWith<TransactionDTO> get copyWith => _$TransactionDTOCopyWithImpl<TransactionDTO>(this as TransactionDTO, _$identity);
+
+  /// Serializes this TransactionDTO to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionDTO&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,description,categoryId,amount,date);
+
+@override
+String toString() {
+  return 'TransactionDTO(id: $id, description: $description, categoryId: $categoryId, amount: $amount, date: $date)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $TransactionDTOCopyWith<$Res>  {
+  factory $TransactionDTOCopyWith(TransactionDTO value, $Res Function(TransactionDTO) _then) = _$TransactionDTOCopyWithImpl;
+@useResult
+$Res call({
+ String id, String description, int categoryId, double amount, DateTime date
+});
+
+
+
+
+}
+/// @nodoc
+class _$TransactionDTOCopyWithImpl<$Res>
+    implements $TransactionDTOCopyWith<$Res> {
+  _$TransactionDTOCopyWithImpl(this._self, this._then);
+
+  final TransactionDTO _self;
+  final $Res Function(TransactionDTO) _then;
+
+/// Create a copy of TransactionDTO
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? description = null,Object? categoryId = null,Object? amount = null,Object? date = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [TransactionDTO].
+extension TransactionDTOPatterns on TransactionDTO {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionDTO value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TransactionDTO() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionDTO value)  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionDTO():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionDTO value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TransactionDTO() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String description,  int categoryId,  double amount,  DateTime date)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TransactionDTO() when $default != null:
+return $default(_that.id,_that.description,_that.categoryId,_that.amount,_that.date);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String description,  int categoryId,  double amount,  DateTime date)  $default,) {final _that = this;
+switch (_that) {
+case _TransactionDTO():
+return $default(_that.id,_that.description,_that.categoryId,_that.amount,_that.date);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String description,  int categoryId,  double amount,  DateTime date)?  $default,) {final _that = this;
+switch (_that) {
+case _TransactionDTO() when $default != null:
+return $default(_that.id,_that.description,_that.categoryId,_that.amount,_that.date);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _TransactionDTO implements TransactionDTO {
+   _TransactionDTO({required this.id, required this.description, required this.categoryId, required this.amount, required this.date});
+  factory _TransactionDTO.fromJson(Map<String, dynamic> json) => _$TransactionDTOFromJson(json);
+
+@override final  String id;
+@override final  String description;
+@override final  int categoryId;
+@override final  double amount;
+@override final  DateTime date;
+
+/// Create a copy of TransactionDTO
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TransactionDTOCopyWith<_TransactionDTO> get copyWith => __$TransactionDTOCopyWithImpl<_TransactionDTO>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$TransactionDTOToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionDTO&&(identical(other.id, id) || other.id == id)&&(identical(other.description, description) || other.description == description)&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.date, date) || other.date == date));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,description,categoryId,amount,date);
+
+@override
+String toString() {
+  return 'TransactionDTO(id: $id, description: $description, categoryId: $categoryId, amount: $amount, date: $date)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TransactionDTOCopyWith<$Res> implements $TransactionDTOCopyWith<$Res> {
+  factory _$TransactionDTOCopyWith(_TransactionDTO value, $Res Function(_TransactionDTO) _then) = __$TransactionDTOCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String description, int categoryId, double amount, DateTime date
+});
+
+
+
+
+}
+/// @nodoc
+class __$TransactionDTOCopyWithImpl<$Res>
+    implements _$TransactionDTOCopyWith<$Res> {
+  __$TransactionDTOCopyWithImpl(this._self, this._then);
+
+  final _TransactionDTO _self;
+  final $Res Function(_TransactionDTO) _then;
+
+/// Create a copy of TransactionDTO
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? description = null,Object? categoryId = null,Object? amount = null,Object? date = null,}) {
+  return _then(_TransactionDTO(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as int,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+
+}
+
+// dart format on

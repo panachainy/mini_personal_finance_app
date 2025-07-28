@@ -1,16 +1,16 @@
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_entity.dart';
 
 abstract class TransactionRepository {
-  Future<List<TransactionModel>> getTransactionModels();
-  Future<TransactionModel> getTransactionModelById(String id);
-  Future<void> addTransactionModel(TransactionModel transactionModel);
-  Future<void> updateTransactionModel(TransactionModel transactionModel);
+  Future<List<TransactionEntity>> getTransactionModels();
+  Future<TransactionEntity> getTransactionModelById(String id);
+  Future<void> addTransactionModel(TransactionEntity transactionModel);
+  Future<void> updateTransactionModel(TransactionEntity transactionModel);
   Future<void> deleteTransactionModel(String id);
-  Future<List<TransactionModel>> getTransactionModelsByDateRange(
+  Future<List<TransactionEntity>> getTransactionModelsByDateRange(
     DateTime startDate,
     DateTime endDate,
   );
-  Future<List<TransactionModel>> getTransactionModelsByCategory(
+  Future<List<TransactionEntity>> getTransactionModelsByCategory(
     String category,
   );
 }

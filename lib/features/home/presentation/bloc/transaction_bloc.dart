@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_model.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_model.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_entity.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_entity.dart';
+import 'package:mini_personal_finance_app/features/home/domain/repositories/transaction_repository.dart';
 
 part 'transaction_event.dart';
 part 'transaction_state.dart';
@@ -10,9 +10,12 @@ part 'transaction_bloc.freezed.dart';
 
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   // In-memory storage for demonstration - in a real app, this would be injected as a repository
-  final List<TransactionModel> _transactions = [];
+  final List<TransactionEntity> _transactions = [];
+  final TransactionRepository _transactionRepository;
 
-  TransactionBloc() : super(const TransactionState.initial()) {
+  TransactionBloc({required TransactionRepository transactionRepository})
+    : _transactionRepository = transactionRepository,
+      super(const TransactionState.initial()) {
     on<_Started>(_onStarted);
     on<_LoadTransactions>(_onLoadTransactions);
     on<_AddTransaction>(_onAddTransaction);
@@ -38,11 +41,11 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       // TODO: impl repository to fetch transactions
       _transactions.addAll([
-        TransactionModel(
+        TransactionEntity(
           id: '1',
           description: 'Grocery Shopping',
           amount: 50.0,
-          category: TransactionCategoryModel(
+          category: TransactionCategoryEntity(
             id: '1',
             name: 'Food',
             icon: '🍔',
@@ -50,11 +53,11 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           ),
           date: DateTime.now(),
         ),
-        TransactionModel(
+        TransactionEntity(
           id: '2',
           description: 'Salary',
           amount: 1500.0,
-          category: TransactionCategoryModel(
+          category: TransactionCategoryEntity(
             id: '2',
             name: 'Salary',
             icon: '💼',
@@ -78,7 +81,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       emit(const TransactionState.loading());
 
       // Create new transaction with generated ID
-      final newTransaction = TransactionModel(
+      final newTransaction = TransactionEntity(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         description: event.description,
         category: event.category,
@@ -86,8 +89,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         date: event.date,
       );
 
-      // Simulate API delay
-      await Future.delayed(const Duration(milliseconds: 300));
+      await _transactionRepository.addTransactionModel(newTransaction);
 
       // Add to in-memory storage
       _transactions.add(newTransaction);

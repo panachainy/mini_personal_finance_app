@@ -128,7 +128,7 @@ return deleteTransaction(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadTransactions,TResult Function( String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  addTransaction,TResult Function( String transactionId)?  deleteTransaction,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadTransactions,TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult Function( String transactionId)?  deleteTransaction,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadTransactions() when loadTransactions != null:
@@ -152,7 +152,7 @@ return deleteTransaction(_that.transactionId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadTransactions,required TResult Function( String description,  TransactionCategoryModel category,  double amount,  DateTime date)  addTransaction,required TResult Function( String transactionId)  deleteTransaction,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadTransactions,required TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)  addTransaction,required TResult Function( String transactionId)  deleteTransaction,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadTransactions():
@@ -175,7 +175,7 @@ return deleteTransaction(_that.transactionId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadTransactions,TResult? Function( String description,  TransactionCategoryModel category,  double amount,  DateTime date)?  addTransaction,TResult? Function( String transactionId)?  deleteTransaction,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadTransactions,TResult? Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult? Function( String transactionId)?  deleteTransaction,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadTransactions() when loadTransactions != null:
@@ -261,7 +261,7 @@ class _AddTransaction implements TransactionEvent {
   
 
  final  String description;
- final  TransactionCategoryModel category;
+ final  TransactionCategoryEntity category;
  final  double amount;
  final  DateTime date;
 
@@ -295,11 +295,11 @@ abstract mixin class _$AddTransactionCopyWith<$Res> implements $TransactionEvent
   factory _$AddTransactionCopyWith(_AddTransaction value, $Res Function(_AddTransaction) _then) = __$AddTransactionCopyWithImpl;
 @useResult
 $Res call({
- String description, TransactionCategoryModel category, double amount, DateTime date
+ String description, TransactionCategoryEntity category, double amount, DateTime date
 });
 
 
-$TransactionCategoryModelCopyWith<$Res> get category;
+$TransactionCategoryEntityCopyWith<$Res> get category;
 
 }
 /// @nodoc
@@ -316,7 +316,7 @@ class __$AddTransactionCopyWithImpl<$Res>
   return _then(_AddTransaction(
 description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as TransactionCategoryModel,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryEntity,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
@@ -326,9 +326,9 @@ as DateTime,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TransactionCategoryModelCopyWith<$Res> get category {
+$TransactionCategoryEntityCopyWith<$Res> get category {
   
-  return $TransactionCategoryModelCopyWith<$Res>(_self.category, (value) {
+  return $TransactionCategoryEntityCopyWith<$Res>(_self.category, (value) {
     return _then(_self.copyWith(category: value));
   });
 }
@@ -517,7 +517,7 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<TransactionModel> transactions)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<TransactionEntity> transactions)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -541,7 +541,7 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<TransactionModel> transactions)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<TransactionEntity> transactions)  loaded,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
@@ -564,7 +564,7 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<TransactionModel> transactions)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<TransactionEntity> transactions)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
@@ -646,11 +646,11 @@ String toString() {
 
 
 class _Loaded implements TransactionState {
-  const _Loaded({required final  List<TransactionModel> transactions}): _transactions = transactions;
+  const _Loaded({required final  List<TransactionEntity> transactions}): _transactions = transactions;
   
 
- final  List<TransactionModel> _transactions;
- List<TransactionModel> get transactions {
+ final  List<TransactionEntity> _transactions;
+ List<TransactionEntity> get transactions {
   if (_transactions is EqualUnmodifiableListView) return _transactions;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_transactions);
@@ -687,7 +687,7 @@ abstract mixin class _$LoadedCopyWith<$Res> implements $TransactionStateCopyWith
   factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
 @useResult
 $Res call({
- List<TransactionModel> transactions
+ List<TransactionEntity> transactions
 });
 
 
@@ -707,7 +707,7 @@ class __$LoadedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? transactions = null,}) {
   return _then(_Loaded(
 transactions: null == transactions ? _self._transactions : transactions // ignore: cast_nullable_to_non_nullable
-as List<TransactionModel>,
+as List<TransactionEntity>,
   ));
 }
 
