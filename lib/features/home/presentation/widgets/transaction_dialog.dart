@@ -127,20 +127,46 @@ class TransactionDialog extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
+            // Validate all fields before submit
             final parsedAmount = double.tryParse(amountController.text);
-            if (parsedAmount != null) {
-              onSubmit?.call(
-                id,
-                isExpense,
-                masterCategories.firstWhere(
-                  (cat) => cat.id == categoryId.toString(),
-                ),
-                parsedAmount,
-                descriptionController.text,
-                selectedDate.value,
+            final selectedCategoryId = categoryId;
+            final enteredDescription = descriptionController.text.trim();
+
+            if (selectedCategoryId == null || selectedCategoryId.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Please select a category')),
               );
-              Navigator.of(context).pop();
+              return;
             }
+
+            if (parsedAmount == null || parsedAmount <= 0) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Please enter a valid amount')),
+              );
+              return;
+            }
+
+            if (enteredDescription.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Please enter a description')),
+              );
+              return;
+            }
+
+            // FIXME: I think if better way to validation.
+
+            // All validations passed, submit the transaction
+            onSubmit?.call(
+              id,
+              isExpense,
+              masterCategories.firstWhere(
+                (cat) => cat.id == selectedCategoryId,
+              ),
+              parsedAmount,
+              enteredDescription,
+              selectedDate.value,
+            );
+            Navigator.of(context).pop();
           },
           child: Text(id != null ? 'Update Transaction' : 'Add Transaction'),
         ),
