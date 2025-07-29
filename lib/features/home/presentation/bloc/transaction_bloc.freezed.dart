@@ -403,30 +403,64 @@ as String,
 /// @nodoc
 mixin _$TransactionState {
 
-
+ TransactionStatus get status; List<TransactionEntity> get transactions; List<TransactionCategoryEntity> get categories; String? get errorMessage;
+/// Create a copy of TransactionState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TransactionStateCopyWith<TransactionState> get copyWith => _$TransactionStateCopyWithImpl<TransactionState>(this as TransactionState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TransactionState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.transactions, transactions)&&const DeepCollectionEquality().equals(other.categories, categories)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(transactions),const DeepCollectionEquality().hash(categories),errorMessage);
 
 @override
 String toString() {
-  return 'TransactionState()';
+  return 'TransactionState(status: $status, transactions: $transactions, categories: $categories, errorMessage: $errorMessage)';
 }
 
 
 }
 
 /// @nodoc
-class $TransactionStateCopyWith<$Res>  {
-$TransactionStateCopyWith(TransactionState _, $Res Function(TransactionState) __);
+abstract mixin class $TransactionStateCopyWith<$Res>  {
+  factory $TransactionStateCopyWith(TransactionState value, $Res Function(TransactionState) _then) = _$TransactionStateCopyWithImpl;
+@useResult
+$Res call({
+ TransactionStatus status, List<TransactionEntity> transactions, List<TransactionCategoryEntity> categories, String? errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class _$TransactionStateCopyWithImpl<$Res>
+    implements $TransactionStateCopyWith<$Res> {
+  _$TransactionStateCopyWithImpl(this._self, this._then);
+
+  final TransactionState _self;
+  final $Res Function(TransactionState) _then;
+
+/// Create a copy of TransactionState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? transactions = null,Object? categories = null,Object? errorMessage = freezed,}) {
+  return _then(_self.copyWith(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as TransactionStatus,transactions: null == transactions ? _self.transactions : transactions // ignore: cast_nullable_to_non_nullable
+as List<TransactionEntity>,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
+as List<TransactionCategoryEntity>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
 }
 
 
@@ -444,14 +478,11 @@ extension TransactionStatePatterns on TransactionState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _Loading value)?  loading,TResult Function( _Loaded value)?  loaded,TResult Function( _Error value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TransactionState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _Error() when error != null:
-return error(_that);case _:
+case _TransactionState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -469,14 +500,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _Loading value)  loading,required TResult Function( _Loaded value)  loaded,required TResult Function( _Error value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TransactionState value)  $default,){
 final _that = this;
 switch (_that) {
-case _Initial():
-return initial(_that);case _Loading():
-return loading(_that);case _Loaded():
-return loaded(_that);case _Error():
-return error(_that);case _:
+case _TransactionState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -493,14 +521,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _Loading value)?  loading,TResult? Function( _Loaded value)?  loaded,TResult? Function( _Error value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TransactionState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial(_that);case _Loading() when loading != null:
-return loading(_that);case _Loaded() when loaded != null:
-return loaded(_that);case _Error() when error != null:
-return error(_that);case _:
+case _TransactionState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -517,13 +542,10 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<TransactionEntity> transactions)?  loaded,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TransactionStatus status,  List<TransactionEntity> transactions,  List<TransactionCategoryEntity> categories,  String? errorMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
-return loaded(_that.transactions);case _Error() when error != null:
-return error(_that.message);case _:
+case _TransactionState() when $default != null:
+return $default(_that.status,_that.transactions,_that.categories,_that.errorMessage);case _:
   return orElse();
 
 }
@@ -541,13 +563,10 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<TransactionEntity> transactions)  loaded,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TransactionStatus status,  List<TransactionEntity> transactions,  List<TransactionCategoryEntity> categories,  String? errorMessage)  $default,) {final _that = this;
 switch (_that) {
-case _Initial():
-return initial();case _Loading():
-return loading();case _Loaded():
-return loaded(_that.transactions);case _Error():
-return error(_that.message);case _:
+case _TransactionState():
+return $default(_that.status,_that.transactions,_that.categories,_that.errorMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -564,13 +583,10 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<TransactionEntity> transactions)?  loaded,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TransactionStatus status,  List<TransactionEntity> transactions,  List<TransactionCategoryEntity> categories,  String? errorMessage)?  $default,) {final _that = this;
 switch (_that) {
-case _Initial() when initial != null:
-return initial();case _Loading() when loading != null:
-return loading();case _Loaded() when loaded != null:
-return loaded(_that.transactions);case _Error() when error != null:
-return error(_that.message);case _:
+case _TransactionState() when $default != null:
+return $default(_that.status,_that.transactions,_that.categories,_that.errorMessage);case _:
   return null;
 
 }
@@ -581,113 +597,58 @@ return error(_that.message);case _:
 /// @nodoc
 
 
-class _Initial implements TransactionState {
-  const _Initial();
+class _TransactionState implements TransactionState {
+  const _TransactionState({this.status = TransactionStatus.initial, final  List<TransactionEntity> transactions = const [], final  List<TransactionCategoryEntity> categories = const [], this.errorMessage}): _transactions = transactions,_categories = categories;
   
 
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'TransactionState.initial()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Loading implements TransactionState {
-  const _Loading();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'TransactionState.loading()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class _Loaded implements TransactionState {
-  const _Loaded({required final  List<TransactionEntity> transactions}): _transactions = transactions;
-  
-
+@override@JsonKey() final  TransactionStatus status;
  final  List<TransactionEntity> _transactions;
- List<TransactionEntity> get transactions {
+@override@JsonKey() List<TransactionEntity> get transactions {
   if (_transactions is EqualUnmodifiableListView) return _transactions;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_transactions);
 }
 
+ final  List<TransactionCategoryEntity> _categories;
+@override@JsonKey() List<TransactionCategoryEntity> get categories {
+  if (_categories is EqualUnmodifiableListView) return _categories;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_categories);
+}
+
+@override final  String? errorMessage;
 
 /// Create a copy of TransactionState
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$LoadedCopyWith<_Loaded> get copyWith => __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+_$TransactionStateCopyWith<_TransactionState> get copyWith => __$TransactionStateCopyWithImpl<_TransactionState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loaded&&const DeepCollectionEquality().equals(other._transactions, _transactions));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TransactionState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._transactions, _transactions)&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_transactions));
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_transactions),const DeepCollectionEquality().hash(_categories),errorMessage);
 
 @override
 String toString() {
-  return 'TransactionState.loaded(transactions: $transactions)';
+  return 'TransactionState(status: $status, transactions: $transactions, categories: $categories, errorMessage: $errorMessage)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$LoadedCopyWith<$Res> implements $TransactionStateCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) _then) = __$LoadedCopyWithImpl;
-@useResult
+abstract mixin class _$TransactionStateCopyWith<$Res> implements $TransactionStateCopyWith<$Res> {
+  factory _$TransactionStateCopyWith(_TransactionState value, $Res Function(_TransactionState) _then) = __$TransactionStateCopyWithImpl;
+@override @useResult
 $Res call({
- List<TransactionEntity> transactions
+ TransactionStatus status, List<TransactionEntity> transactions, List<TransactionCategoryEntity> categories, String? errorMessage
 });
 
 
@@ -695,85 +656,22 @@ $Res call({
 
 }
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(this._self, this._then);
+class __$TransactionStateCopyWithImpl<$Res>
+    implements _$TransactionStateCopyWith<$Res> {
+  __$TransactionStateCopyWithImpl(this._self, this._then);
 
-  final _Loaded _self;
-  final $Res Function(_Loaded) _then;
-
-/// Create a copy of TransactionState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? transactions = null,}) {
-  return _then(_Loaded(
-transactions: null == transactions ? _self._transactions : transactions // ignore: cast_nullable_to_non_nullable
-as List<TransactionEntity>,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class _Error implements TransactionState {
-  const _Error({required this.message});
-  
-
- final  String message;
+  final _TransactionState _self;
+  final $Res Function(_TransactionState) _then;
 
 /// Create a copy of TransactionState
 /// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.message, message) || other.message == message));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,message);
-
-@override
-String toString() {
-  return 'TransactionState.error(message: $message)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res> implements $TransactionStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) = __$ErrorCopyWithImpl;
-@useResult
-$Res call({
- String message
-});
-
-
-
-
-}
-/// @nodoc
-class __$ErrorCopyWithImpl<$Res>
-    implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
-
-  final _Error _self;
-  final $Res Function(_Error) _then;
-
-/// Create a copy of TransactionState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
-  return _then(_Error(
-message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? transactions = null,Object? categories = null,Object? errorMessage = freezed,}) {
+  return _then(_TransactionState(
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as TransactionStatus,transactions: null == transactions ? _self._transactions : transactions // ignore: cast_nullable_to_non_nullable
+as List<TransactionEntity>,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
+as List<TransactionCategoryEntity>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

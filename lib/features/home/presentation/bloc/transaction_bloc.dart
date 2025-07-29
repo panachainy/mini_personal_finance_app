@@ -9,14 +9,11 @@ part 'transaction_state.dart';
 part 'transaction_bloc.freezed.dart';
 
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-  // In-memory storage for demonstration - in a real app, this would be injected as a repository
-  final List<TransactionEntity> _transactions = [];
-  late List<TransactionCategoryEntity> _categories = [];
   final TransactionRepository _transactionRepository;
 
   TransactionBloc({required TransactionRepository transactionRepository})
     : _transactionRepository = transactionRepository,
-      super(const TransactionState.initial()) {
+      super(const TransactionState()) {
     on<_Started>(_onStarted);
     on<_LoadTransactions>(_onLoadTransactions);
     on<_AddTransaction>(_onAddTransaction);
@@ -35,18 +32,25 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     try {
-      emit(const TransactionState.loading());
+      emit(state.copyWith(status: TransactionStatus.loading));
 
       final newTransactions = await _transactionRepository.getTransactions();
+      final newCategories = await _transactionRepository.getCategories();
 
-      _transactions.clear();
-      _transactions.addAll(newTransactions);
-
-      _categories = await _transactionRepository.getCategories();
-
-      emit(TransactionState.loaded(transactions: List.from(_transactions)));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.loaded,
+          transactions: newTransactions,
+          categories: newCategories,
+        ),
+      );
     } catch (e) {
-      emit(TransactionState.error(message: 'Failed to load transactions: $e'));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.error,
+          errorMessage: 'Failed to load transactions: $e',
+        ),
+      );
     }
   }
 
@@ -55,7 +59,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     try {
-      emit(const TransactionState.loading());
+      emit(state.copyWith(status: TransactionStatus.loading));
 
       // Create new transaction with generated ID
       final newTransaction = TransactionEntity(
@@ -68,12 +72,19 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       await _transactionRepository.addTransactionModel(newTransaction);
 
-      // Add to in-memory storage
-      _transactions.add(newTransaction);
-
-      emit(TransactionState.loaded(transactions: List.from(_transactions)));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.loaded,
+          transactions: state.transactions..add(newTransaction),
+        ),
+      );
     } catch (e) {
-      emit(TransactionState.error(message: 'Failed to add transaction: $e'));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.error,
+          errorMessage: 'Failed to add transaction: $e',
+        ),
+      );
     }
   }
 
@@ -82,19 +93,28 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     try {
-      emit(const TransactionState.loading());
+      emit(state.copyWith(status: TransactionStatus.loading));
 
       // Simulate API delay
       await Future.delayed(const Duration(milliseconds: 300));
 
-      // Remove from in-memory storage
-      _transactions.removeWhere(
+      state.transactions.removeWhere(
         (transaction) => transaction.id == event.transactionId,
       );
 
-      emit(TransactionState.loaded(transactions: List.from(_transactions)));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.loaded,
+          transactions: state.transactions,
+        ),
+      );
     } catch (e) {
-      emit(TransactionState.error(message: 'Failed to delete transaction: $e'));
+      emit(
+        state.copyWith(
+          status: TransactionStatus.error,
+          errorMessage: 'Failed to delete transaction: $e',
+        ),
+      );
     }
   }
 }

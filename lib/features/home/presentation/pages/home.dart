@@ -45,25 +45,19 @@ class HomeView extends StatelessWidget {
             Expanded(
               child: BlocBuilder<TransactionBloc, TransactionState>(
                 builder: (context, state) {
-                  return state.when(
-                    initial: () => const Center(
-                      child: Text(
-                        'Press the + button to add your first transaction',
-                      ),
-                    ),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
-                    loaded: (transactions) => RefreshIndicator(
+                  if (state.status == TransactionStatus.loading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state.status == TransactionStatus.error) {
+                    return Center(child: Text('Error: ${state.errorMessage}'));
+                  } else if (state.status == TransactionStatus.loaded) {
+                    return RefreshIndicator(
                       onRefresh: () async {
                         context.read<TransactionBloc>().add(
                           const TransactionEvent.started(),
                         );
                       },
                       child: TransactionList(
-                        transactions: state.maybeWhen(
-                          loaded: (transactions) => transactions,
-                          orElse: () => [],
-                        ),
+                        transactions: state.transactions,
                         onTap: (transaction) {
                           showDialog(
                             context: context,
@@ -78,6 +72,7 @@ class HomeView extends StatelessWidget {
                                     DateTime date,
                                   ) {
                                     // TODO: Handle transaction update
+                                    // You can uncomment the line above and use transactionBloc here
                                     print(
                                       'Transaction created: $description, $amount',
                                     );
@@ -92,6 +87,7 @@ class HomeView extends StatelessWidget {
                           );
                         },
                         onDelete: (transaction) {
+                          // final transactionBloc = context.read<TransactionBloc>();
                           SimpleAlert.showConfirm(
                             context,
                             title: 'Delete Transaction',
@@ -99,14 +95,21 @@ class HomeView extends StatelessWidget {
                                 'Are you sure you want to delete this transaction?',
                             onConfirm: () {
                               // TODO: Handle transaction deletion
+                              // You can uncomment the line above and use transactionBloc here
                               print('Transaction deleted: ${transaction.id}');
                             },
                           );
                         },
                       ),
-                    ),
-                    error: (message) => Center(child: Text('Error: $message')),
-                  );
+                    );
+                  } else {
+                    return const Center(
+                      child: Text(
+                        'No transactions yet',
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -115,6 +118,7 @@ class HomeView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          final transactionBloc = context.read<TransactionBloc>();
           showDialog(
             context: context,
             builder: (context) => TransactionDialog(
@@ -127,7 +131,7 @@ class HomeView extends StatelessWidget {
                     String description,
                     DateTime date,
                   ) {
-                    context.read<TransactionBloc>().add(
+                    transactionBloc.add(
                       TransactionEvent.addTransaction(
                         description: description,
                         category: TransactionCategoryEntity(
