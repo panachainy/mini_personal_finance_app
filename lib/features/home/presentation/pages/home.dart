@@ -62,11 +62,18 @@ class HomeView extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) => TransactionDialog(
+                              masterCategories: state.categories,
+                              id: transaction.id,
+                              isExpense: transaction.category.isExpense,
+                              categoryId: transaction.category.id,
+                              amount: transaction.amount,
+                              description: transaction.description,
+                              date: transaction.date,
                               onSubmit:
                                   (
                                     String? id,
                                     bool isExpense,
-                                    String category,
+                                    TransactionCategoryEntity category,
                                     double amount,
                                     String description,
                                     DateTime date,
@@ -74,15 +81,9 @@ class HomeView extends StatelessWidget {
                                     // TODO: Handle transaction update
                                     // You can uncomment the line above and use transactionBloc here
                                     print(
-                                      'Transaction created: $description, $amount',
+                                      'Transaction created: $id, $isExpense, $category, $amount, $description, $date',
                                     );
                                   },
-                              id: transaction.id,
-                              isExpense: transaction.category.isExpense,
-                              category: transaction.category.name,
-                              amount: transaction.amount,
-                              description: transaction.description,
-                              date: transaction.date,
                             ),
                           );
                         },
@@ -122,11 +123,14 @@ class HomeView extends StatelessWidget {
           showDialog(
             context: context,
             builder: (context) => TransactionDialog(
+              masterCategories: transactionBloc.state.categories,
+              isExpense: false,
+              amount: 0,
               onSubmit:
                   (
                     String? id,
                     bool isExpense,
-                    String category,
+                    TransactionCategoryEntity category,
                     double amount,
                     String description,
                     DateTime date,
@@ -134,14 +138,9 @@ class HomeView extends StatelessWidget {
                     transactionBloc.add(
                       TransactionEvent.addTransaction(
                         description: description,
-                        category: TransactionCategoryEntity(
-                          id: '',
-                          name: category,
-                          icon: '',
-                          isExpense: isExpense,
-                        ),
+                        category: category,
                         amount: amount,
-                        date: DateTime.now(),
+                        date: date,
                       ),
                     );
                   },

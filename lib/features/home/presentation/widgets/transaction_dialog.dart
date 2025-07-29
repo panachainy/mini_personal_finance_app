@@ -1,39 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_dto.dart';
+import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_entity.dart';
 
 class TransactionDialog extends StatelessWidget {
+  final List<TransactionCategoryEntity> masterCategories;
+  final bool isExpense;
+  final String? categoryId;
+  final double amount;
+
+  // if have id it edit case
+  final String? id;
+  final String? description;
+  final DateTime? date;
+
   final Function(
     String? id,
     bool isExpense,
-    String category,
+    TransactionCategoryEntity category,
     double amount,
     String description,
     DateTime date,
   )?
   onSubmit;
 
-  // if have id it edit case
-  final String? id;
-  final bool? isExpense;
-  final String? category;
-  final double? amount;
-  final String? description;
-  final DateTime? date;
-
   const TransactionDialog({
     super.key,
-    this.onSubmit,
+    required this.masterCategories,
+    required this.isExpense,
+    required this.amount,
+    this.categoryId,
     this.id,
-    this.isExpense,
-    this.category,
-    this.amount,
     this.description,
     this.date,
+    this.onSubmit,
   });
 
   @override
   Widget build(BuildContext context) {
     final amountController = TextEditingController(
-      text: amount != null ? amount.toString() : '',
+      text: amount != 0 ? amount.toString() : '0.00',
     );
     final descriptionController = TextEditingController(
       text: description ?? '',
@@ -49,6 +54,25 @@ class TransactionDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          DropdownButtonFormField<String>(
+            value: categoryId,
+            decoration: const InputDecoration(
+              labelText: 'Category',
+              border: OutlineInputBorder(),
+            ),
+            items: masterCategories
+                .map(
+                  (category) => DropdownMenuItem<String>(
+                    value: category.id,
+                    child: Text(category.name),
+                  ),
+                )
+                .toList(),
+            onChanged: (value) {
+              // Handle category selection if needed
+            },
+          ),
+          const SizedBox(height: 16),
           TextField(
             controller: amountController,
             keyboardType: TextInputType.number,
@@ -107,8 +131,10 @@ class TransactionDialog extends StatelessWidget {
             if (parsedAmount != null) {
               onSubmit?.call(
                 id,
-                isExpense ?? false,
-                category ?? '',
+                isExpense,
+                masterCategories.firstWhere(
+                  (cat) => cat.id == categoryId.toString(),
+                ),
                 parsedAmount,
                 descriptionController.text,
                 selectedDate.value,
