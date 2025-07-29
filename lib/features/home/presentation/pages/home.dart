@@ -59,6 +59,8 @@ class HomeView extends StatelessWidget {
                       child: TransactionList(
                         transactions: state.transactions,
                         onTap: (transaction) {
+                          final transactionBloc = context
+                              .read<TransactionBloc>();
                           showDialog(
                             context: context,
                             builder: (context) => TransactionDialog(
@@ -78,7 +80,7 @@ class HomeView extends StatelessWidget {
                                     String description,
                                     DateTime date,
                                   ) {
-                                    context.read<TransactionBloc>().add(
+                                    transactionBloc.add(
                                       TransactionEvent.updateTransaction(
                                         id: id,
                                         isExpense: isExpense,
