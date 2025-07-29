@@ -17,6 +17,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     on<_Started>(_onStarted);
     on<_LoadTransactions>(_onLoadTransactions);
     on<_AddTransaction>(_onAddTransaction);
+    on<_UpdateTransaction>(_onUpdateTransaction);
     on<_DeleteTransaction>(_onDeleteTransaction);
   }
 
@@ -83,6 +84,52 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         state.copyWith(
           status: TransactionStatus.error,
           errorMessage: 'Failed to add transaction: $e',
+        ),
+      );
+    }
+  }
+
+  Future<void> _onUpdateTransaction(
+    _UpdateTransaction event,
+    Emitter<TransactionState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(status: TransactionStatus.loading));
+
+      // Find the transaction to update
+      final index = state.transactions.indexWhere((t) => t.id == event.id);
+      if (index == -1) {
+        throw Exception('Transaction not found');
+      }
+
+      // Create updated transaction
+      final updatedTransaction = TransactionEntity(
+        id: state.transactions[index].id,
+        description: event.description,
+        category: event.category,
+        amount: event.amount,
+        date: event.date,
+      );
+
+      await _transactionRepository.updateTransactionModel(updatedTransaction);
+
+      // Update the transaction in the state
+      final updatedTransactions = List<TransactionEntity>.from(
+        state.transactions,
+      );
+      updatedTransactions[index] = updatedTransaction;
+
+      emit(
+        state.copyWith(
+          status: TransactionStatus.loaded,
+          transactions: updatedTransactions,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: TransactionStatus.error,
+          errorMessage: 'Failed to update transaction: $e',
         ),
       );
     }

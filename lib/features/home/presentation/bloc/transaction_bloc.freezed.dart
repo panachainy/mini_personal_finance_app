@@ -55,13 +55,14 @@ extension TransactionEventPatterns on TransactionEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadTransactions value)?  loadTransactions,TResult Function( _AddTransaction value)?  addTransaction,TResult Function( _DeleteTransaction value)?  deleteTransaction,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _LoadTransactions value)?  loadTransactions,TResult Function( _AddTransaction value)?  addTransaction,TResult Function( _UpdateTransaction value)?  updateTransaction,TResult Function( _DeleteTransaction value)?  deleteTransaction,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _LoadTransactions() when loadTransactions != null:
 return loadTransactions(_that);case _AddTransaction() when addTransaction != null:
-return addTransaction(_that);case _DeleteTransaction() when deleteTransaction != null:
+return addTransaction(_that);case _UpdateTransaction() when updateTransaction != null:
+return updateTransaction(_that);case _DeleteTransaction() when deleteTransaction != null:
 return deleteTransaction(_that);case _:
   return orElse();
 
@@ -80,13 +81,14 @@ return deleteTransaction(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadTransactions value)  loadTransactions,required TResult Function( _AddTransaction value)  addTransaction,required TResult Function( _DeleteTransaction value)  deleteTransaction,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _LoadTransactions value)  loadTransactions,required TResult Function( _AddTransaction value)  addTransaction,required TResult Function( _UpdateTransaction value)  updateTransaction,required TResult Function( _DeleteTransaction value)  deleteTransaction,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case _LoadTransactions():
 return loadTransactions(_that);case _AddTransaction():
-return addTransaction(_that);case _DeleteTransaction():
+return addTransaction(_that);case _UpdateTransaction():
+return updateTransaction(_that);case _DeleteTransaction():
 return deleteTransaction(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -104,13 +106,14 @@ return deleteTransaction(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadTransactions value)?  loadTransactions,TResult? Function( _AddTransaction value)?  addTransaction,TResult? Function( _DeleteTransaction value)?  deleteTransaction,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _LoadTransactions value)?  loadTransactions,TResult? Function( _AddTransaction value)?  addTransaction,TResult? Function( _UpdateTransaction value)?  updateTransaction,TResult? Function( _DeleteTransaction value)?  deleteTransaction,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case _LoadTransactions() when loadTransactions != null:
 return loadTransactions(_that);case _AddTransaction() when addTransaction != null:
-return addTransaction(_that);case _DeleteTransaction() when deleteTransaction != null:
+return addTransaction(_that);case _UpdateTransaction() when updateTransaction != null:
+return updateTransaction(_that);case _DeleteTransaction() when deleteTransaction != null:
 return deleteTransaction(_that);case _:
   return null;
 
@@ -128,12 +131,13 @@ return deleteTransaction(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadTransactions,TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult Function( String transactionId)?  deleteTransaction,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  loadTransactions,TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult Function( String? id,  bool isExpense,  TransactionCategoryEntity category,  double amount,  String description,  DateTime date)?  updateTransaction,TResult Function( String transactionId)?  deleteTransaction,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadTransactions() when loadTransactions != null:
 return loadTransactions();case _AddTransaction() when addTransaction != null:
-return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _DeleteTransaction() when deleteTransaction != null:
+return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _UpdateTransaction() when updateTransaction != null:
+return updateTransaction(_that.id,_that.isExpense,_that.category,_that.amount,_that.description,_that.date);case _DeleteTransaction() when deleteTransaction != null:
 return deleteTransaction(_that.transactionId);case _:
   return orElse();
 
@@ -152,12 +156,13 @@ return deleteTransaction(_that.transactionId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadTransactions,required TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)  addTransaction,required TResult Function( String transactionId)  deleteTransaction,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  loadTransactions,required TResult Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)  addTransaction,required TResult Function( String? id,  bool isExpense,  TransactionCategoryEntity category,  double amount,  String description,  DateTime date)  updateTransaction,required TResult Function( String transactionId)  deleteTransaction,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case _LoadTransactions():
 return loadTransactions();case _AddTransaction():
-return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _DeleteTransaction():
+return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _UpdateTransaction():
+return updateTransaction(_that.id,_that.isExpense,_that.category,_that.amount,_that.description,_that.date);case _DeleteTransaction():
 return deleteTransaction(_that.transactionId);case _:
   throw StateError('Unexpected subclass');
 
@@ -175,12 +180,13 @@ return deleteTransaction(_that.transactionId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadTransactions,TResult? Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult? Function( String transactionId)?  deleteTransaction,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  loadTransactions,TResult? Function( String description,  TransactionCategoryEntity category,  double amount,  DateTime date)?  addTransaction,TResult? Function( String? id,  bool isExpense,  TransactionCategoryEntity category,  double amount,  String description,  DateTime date)?  updateTransaction,TResult? Function( String transactionId)?  deleteTransaction,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case _LoadTransactions() when loadTransactions != null:
 return loadTransactions();case _AddTransaction() when addTransaction != null:
-return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _DeleteTransaction() when deleteTransaction != null:
+return addTransaction(_that.description,_that.category,_that.amount,_that.date);case _UpdateTransaction() when updateTransaction != null:
+return updateTransaction(_that.id,_that.isExpense,_that.category,_that.amount,_that.description,_that.date);case _DeleteTransaction() when deleteTransaction != null:
 return deleteTransaction(_that.transactionId);case _:
   return null;
 
@@ -318,6 +324,91 @@ description: null == description ? _self.description : description // ignore: ca
 as String,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as TransactionCategoryEntity,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
 as double,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as DateTime,
+  ));
+}
+
+/// Create a copy of TransactionEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TransactionCategoryEntityCopyWith<$Res> get category {
+  
+  return $TransactionCategoryEntityCopyWith<$Res>(_self.category, (value) {
+    return _then(_self.copyWith(category: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class _UpdateTransaction implements TransactionEvent {
+  const _UpdateTransaction({this.id, required this.isExpense, required this.category, required this.amount, required this.description, required this.date});
+  
+
+ final  String? id;
+ final  bool isExpense;
+ final  TransactionCategoryEntity category;
+ final  double amount;
+ final  String description;
+ final  DateTime date;
+
+/// Create a copy of TransactionEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UpdateTransactionCopyWith<_UpdateTransaction> get copyWith => __$UpdateTransactionCopyWithImpl<_UpdateTransaction>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UpdateTransaction&&(identical(other.id, id) || other.id == id)&&(identical(other.isExpense, isExpense) || other.isExpense == isExpense)&&(identical(other.category, category) || other.category == category)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.description, description) || other.description == description)&&(identical(other.date, date) || other.date == date));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,isExpense,category,amount,description,date);
+
+@override
+String toString() {
+  return 'TransactionEvent.updateTransaction(id: $id, isExpense: $isExpense, category: $category, amount: $amount, description: $description, date: $date)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UpdateTransactionCopyWith<$Res> implements $TransactionEventCopyWith<$Res> {
+  factory _$UpdateTransactionCopyWith(_UpdateTransaction value, $Res Function(_UpdateTransaction) _then) = __$UpdateTransactionCopyWithImpl;
+@useResult
+$Res call({
+ String? id, bool isExpense, TransactionCategoryEntity category, double amount, String description, DateTime date
+});
+
+
+$TransactionCategoryEntityCopyWith<$Res> get category;
+
+}
+/// @nodoc
+class __$UpdateTransactionCopyWithImpl<$Res>
+    implements _$UpdateTransactionCopyWith<$Res> {
+  __$UpdateTransactionCopyWithImpl(this._self, this._then);
+
+  final _UpdateTransaction _self;
+  final $Res Function(_UpdateTransaction) _then;
+
+/// Create a copy of TransactionEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? isExpense = null,Object? category = null,Object? amount = null,Object? description = null,Object? date = null,}) {
+  return _then(_UpdateTransaction(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,isExpense: null == isExpense ? _self.isExpense : isExpense // ignore: cast_nullable_to_non_nullable
+as bool,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
+as TransactionCategoryEntity,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as double,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }

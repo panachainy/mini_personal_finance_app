@@ -78,10 +78,15 @@ class HomeView extends StatelessWidget {
                                     String description,
                                     DateTime date,
                                   ) {
-                                    // TODO: Handle transaction update
-                                    // You can uncomment the line above and use transactionBloc here
-                                    print(
-                                      'Transaction created: $id, $isExpense, $category, $amount, $description, $date',
+                                    context.read<TransactionBloc>().add(
+                                      TransactionEvent.updateTransaction(
+                                        id: id,
+                                        isExpense: isExpense,
+                                        category: category,
+                                        amount: amount,
+                                        description: description,
+                                        date: date,
+                                      ),
                                     );
                                   },
                             ),

@@ -10,6 +10,14 @@ class TransactionEvent with _$TransactionEvent {
     required double amount,
     required DateTime date,
   }) = _AddTransaction;
+  const factory TransactionEvent.updateTransaction({
+    String? id,
+    required bool isExpense,
+    required TransactionCategoryEntity category,
+    required double amount,
+    required String description,
+    required DateTime date,
+  }) = _UpdateTransaction;
   const factory TransactionEvent.deleteTransaction({
     required String transactionId,
   }) = _DeleteTransaction;
