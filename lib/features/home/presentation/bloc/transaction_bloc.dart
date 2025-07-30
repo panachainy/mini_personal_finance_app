@@ -73,10 +73,15 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       await _transactionRepository.addTransactionModel(newTransaction);
 
+      // Add the new transaction to the state
+      final updatedTransactions = List<TransactionEntity>.from(
+        state.transactions,
+      )..add(newTransaction);
+
       emit(
         state.copyWith(
           status: TransactionStatus.loaded,
-          transactions: state.transactions..add(newTransaction),
+          transactions: updatedTransactions,
         ),
       );
     } catch (e) {
