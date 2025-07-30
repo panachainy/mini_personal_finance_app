@@ -30,6 +30,12 @@ But in this case, I need speed for development, So I just commit to dev branch d
 
 I do this repository via my knowledge & AI some help.
 
+### Features done
+
+- UI view
+- Add transaction
+- Bloc management
+
 ### Design
 
 - widgets is dump widget, no logic inside
