@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mini_personal_finance_app/features/home/data/models/transaction_category_dto.dart';
 import 'package:mini_personal_finance_app/features/home/domain/entities/transaction_category_entity.dart';
 
-class TransactionDialog extends StatelessWidget {
+class TransactionDialog extends StatefulWidget {
   final List<TransactionCategoryEntity> masterCategories;
   final bool isExpense;
   final String? categoryId;
@@ -36,18 +35,95 @@ class TransactionDialog extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final amountController = TextEditingController(
-      text: amount != 0 ? amount.toString() : '0.00',
-    );
-    final descriptionController = TextEditingController(
-      text: description ?? '',
-    );
-    final selectedDate = ValueNotifier<DateTime>(date ?? DateTime.now());
+  State<TransactionDialog> createState() => _TransactionDialogState();
+}
 
+class _TransactionDialogState extends State<TransactionDialog> {
+  late final TextEditingController _amountController;
+  late final TextEditingController _descriptionController;
+  late String? _selectedCategoryId;
+  late DateTime _selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    _amountController = TextEditingController(
+      text: widget.amount != 0 ? widget.amount.toString() : '0.00',
+    );
+    _descriptionController = TextEditingController(
+      text: widget.description ?? '',
+    );
+    _selectedCategoryId = widget.categoryId;
+    _selectedDate = widget.date ?? DateTime.now();
+  }
+
+  @override
+  void dispose() {
+    _amountController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  bool _validateInputs() {
+    if (_selectedCategoryId == null || _selectedCategoryId!.isEmpty) {
+      _showErrorSnackBar('Please select a category');
+      return false;
+    }
+
+    final parsedAmount = double.tryParse(_amountController.text);
+    if (parsedAmount == null || parsedAmount <= 0) {
+      _showErrorSnackBar('Please enter a valid amount');
+      return false;
+    }
+
+    return true;
+  }
+
+  void _submitTransaction() {
+    if (!_validateInputs()) return;
+
+    final parsedAmount = double.parse(_amountController.text);
+    final enteredDescription = _descriptionController.text.trim();
+    final selectedCategory = widget.masterCategories.firstWhere(
+      (cat) => cat.id == _selectedCategoryId,
+    );
+
+    widget.onSubmit?.call(
+      widget.id,
+      widget.isExpense,
+      selectedCategory,
+      parsedAmount,
+      enteredDescription,
+      _selectedDate,
+    );
+    Navigator.of(context).pop();
+  }
+
+  Future<void> _selectDate() async {
+    final pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        id != null ? 'Update Transaction' : 'Add Transaction',
+        widget.id != null ? 'Update Transaction' : 'Add Transaction',
         textAlign: TextAlign.center,
       ),
       content: Column(
@@ -55,12 +131,12 @@ class TransactionDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           DropdownButtonFormField<String>(
-            value: categoryId,
+            value: _selectedCategoryId,
             decoration: const InputDecoration(
               labelText: 'Category',
               border: OutlineInputBorder(),
             ),
-            items: masterCategories
+            items: widget.masterCategories
                 .map(
                   (category) => DropdownMenuItem<String>(
                     value: category.id,
@@ -69,12 +145,14 @@ class TransactionDialog extends StatelessWidget {
                 )
                 .toList(),
             onChanged: (value) {
-              // Handle category selection if needed
+              setState(() {
+                _selectedCategoryId = value;
+              });
             },
           ),
           const SizedBox(height: 16),
           TextField(
-            controller: amountController,
+            controller: _amountController,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
               labelText: 'Amount',
@@ -84,39 +162,25 @@ class TransactionDialog extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           TextField(
-            controller: descriptionController,
+            controller: _descriptionController,
             decoration: const InputDecoration(
               labelText: 'Description',
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 16),
-          ValueListenableBuilder<DateTime>(
-            valueListenable: selectedDate,
-            builder: (context, date, _) {
-              return TextField(
-                controller: TextEditingController(
-                  text: '${date.day}/${date.month}/${date.year}',
-                ),
-                decoration: const InputDecoration(
-                  labelText: 'Date',
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.calendar_today),
-                ),
-                readOnly: true,
-                onTap: () async {
-                  final pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: date,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime.now(),
-                  );
-                  if (pickedDate != null) {
-                    selectedDate.value = pickedDate;
-                  }
-                },
-              );
-            },
+          TextField(
+            controller: TextEditingController(
+              text:
+                  '${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}',
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Date',
+              border: OutlineInputBorder(),
+              suffixIcon: Icon(Icons.calendar_today),
+            ),
+            readOnly: true,
+            onTap: _selectDate,
           ),
         ],
       ),
@@ -126,49 +190,10 @@ class TransactionDialog extends StatelessWidget {
           child: const Text('Cancel'),
         ),
         ElevatedButton(
-          onPressed: () {
-            // Validate all fields before submit
-            final parsedAmount = double.tryParse(amountController.text);
-            final selectedCategoryId = categoryId;
-            final enteredDescription = descriptionController.text.trim();
-
-            if (selectedCategoryId == null || selectedCategoryId.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Please select a category')),
-              );
-              return;
-            }
-
-            if (parsedAmount == null || parsedAmount <= 0) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Please enter a valid amount')),
-              );
-              return;
-            }
-
-            if (enteredDescription.isEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Please enter a description')),
-              );
-              return;
-            }
-
-            // FIXME: I think if better way to validation.
-
-            // All validations passed, submit the transaction
-            onSubmit?.call(
-              id,
-              isExpense,
-              masterCategories.firstWhere(
-                (cat) => cat.id == selectedCategoryId,
-              ),
-              parsedAmount,
-              enteredDescription,
-              selectedDate.value,
-            );
-            Navigator.of(context).pop();
-          },
-          child: Text(id != null ? 'Update Transaction' : 'Add Transaction'),
+          onPressed: _submitTransaction,
+          child: Text(
+            widget.id != null ? 'Update Transaction' : 'Add Transaction',
+          ),
         ),
       ],
     );
